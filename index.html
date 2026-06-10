@@ -4,208 +4,76 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SBP Daily Digest</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ── Design schema ────────────────────────────────────────────────── */
     :root {
-      --color-bg:          #0f1117;
-      --color-surface:     #1a1d27;
-      --color-surface-2:   #22263a;
-      --color-border:      #2d3048;
-      --color-accent:      #f59e0b;
-      --color-accent-dim:  rgba(245,158,11,.12);
-      --color-text:        #e8eaf0;
-      --color-muted:       #7b82a0;
-      --color-green:       #22c55e;
-      --color-green-dim:   rgba(34,197,94,.12);
-      --color-red:         #ef4444;
-      --color-red-dim:     rgba(239,68,68,.12);
-      --color-blue:        #60a5fa;
-      --color-blue-dim:    rgba(96,165,250,.12);
-      --radius-card:       14px;
-      --radius-pill:       999px;
-      --shadow-card:       0 4px 24px rgba(0,0,0,.35);
-      --font:              'Inter', system-ui, sans-serif;
-      --transition:        .18s ease;
+      --color-bg: #0f1117; --color-surface: #1a1d27; --color-surface-2: #22263a;
+      --color-border: #2d3048; --color-accent: #f59e0b; --color-accent-dim: rgba(245,158,11,.12);
+      --color-text: #e8eaf0; --color-muted: #7b82a0; --color-green: #22c55e;
+      --color-green-dim: rgba(34,197,94,.12); --color-red: #ef4444;
+      --color-red-dim: rgba(239,68,68,.12); --color-blue: #60a5fa;
+      --color-blue-dim: rgba(96,165,250,.12); --radius-card: 14px;
+      --radius-pill: 999px; --shadow-card: 0 4px 24px rgba(0,0,0,.35);
+      --font: 'Inter', system-ui, sans-serif; --transition: .18s ease;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: var(--font);
-      background: var(--color-bg);
-      color: var(--color-text);
-      min-height: 100vh;
-      padding: 0 0 60px;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Header ─────────────────────────────────────────────────────── */
-    .header {
-      background: var(--color-surface);
-      border-bottom: 1px solid var(--color-border);
-      padding: 24px 32px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(8px);
-    }
+    body { font-family: var(--font); background: var(--color-bg); color: var(--color-text); min-height: 100vh; padding: 0 0 60px; -webkit-font-smoothing: antialiased; }
+    .header { background: var(--color-surface); border-bottom: 1px solid var(--color-border); padding: 24px 32px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; position: sticky; top: 0; z-index: 10; }
     .header-left { display: flex; align-items: center; gap: 14px; }
-    .logo-mark {
-      width: 40px; height: 40px;
-      background: var(--color-accent);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 16px;
-      color: #000; letter-spacing: -.5px; flex-shrink: 0;
-    }
-    .header h1 { font-size: 18px; font-weight: 600; color: var(--color-text); }
+    .logo-mark { width: 40px; height: 40px; background: var(--color-accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; color: #000; flex-shrink: 0; }
+    .header h1 { font-size: 18px; font-weight: 600; }
     .header-sub { font-size: 12px; color: var(--color-muted); margin-top: 2px; }
-    .header-date {
-      font-size: 13px; font-weight: 500; color: var(--color-muted);
-      text-align: right;
-    }
+    .header-date { font-size: 13px; font-weight: 500; color: var(--color-muted); text-align: right; }
     .header-date strong { display: block; color: var(--color-text); font-size: 14px; }
-
-    /* ── Layout ──────────────────────────────────────────────────────── */
     .container { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
-
-    .section-label {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 16px;
-    }
-    .section-label .icon {
-      width: 28px; height: 28px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; flex-shrink: 0;
-    }
-    .section-label .icon.amber { background: var(--color-accent-dim); }
-    .section-label .icon.red   { background: var(--color-red-dim); }
-    .section-label h2 {
-      font-size: 15px; font-weight: 600; color: var(--color-text);
-    }
-    .section-label .count {
-      margin-left: auto;
-      font-size: 12px; font-weight: 600;
-      color: var(--color-muted);
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-pill);
-      padding: 2px 10px;
-    }
-
-    .section { margin-bottom: 40px; }
-
-    /* ── Cards ───────────────────────────────────────────────────────── */
-    .card-list { display: flex; flex-direction: column; gap: 8px; }
-
-    .card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-card);
-      padding: 16px 18px;
-      display: flex; align-items: flex-start; gap: 14px;
-      transition: border-color var(--transition), background var(--transition);
-      cursor: default;
-    }
-    .card:hover {
-      border-color: rgba(245,158,11,.3);
-      background: var(--color-surface-2);
-    }
-
-    .card-icon {
-      width: 36px; height: 36px; flex-shrink: 0;
-      border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-    }
-    .card-icon.amber  { background: var(--color-accent-dim); }
-    .card-icon.red    { background: var(--color-red-dim); }
-    .card-icon.green  { background: var(--color-green-dim); }
-    .card-icon.blue   { background: var(--color-blue-dim); }
-    .card-icon.purple { background: rgba(167,139,250,.12); }
-
-    .card-body { flex: 1; min-width: 0; }
-    .card-title {
-      font-size: 14px; font-weight: 500; color: var(--color-text);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      margin-bottom: 4px;
-    }
-    .card-meta {
-      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-      font-size: 12px; color: var(--color-muted);
-    }
-    .card-meta .sep { opacity: .4; }
-
-    .pill {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 11px; font-weight: 600;
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-    }
-    .pill.amber  { background: var(--color-accent-dim); color: var(--color-accent); }
-    .pill.red    { background: var(--color-red-dim);    color: var(--color-red); }
-    .pill.green  { background: var(--color-green-dim);  color: var(--color-green); }
-    .pill.blue   { background: var(--color-blue-dim);   color: var(--color-blue); }
-    .pill.muted  { background: var(--color-surface-2);  color: var(--color-muted); border: 1px solid var(--color-border); }
-
-    /* ── Divider ────────────────────────────────────────────────────── */
-    .divider { border: none; border-top: 1px solid var(--color-border); margin: 0; }
-
-    /* ── Follow-up urgency bar ──────────────────────────────────────── */
-    .card.urgent { border-left: 3px solid var(--color-red); }
-    .card.warn   { border-left: 3px solid var(--color-accent); }
-
-    /* ── Summary strip ─────────────────────────────────────────────── */
-    .summary {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-      margin-bottom: 32px;
-    }
-    .summary-tile {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-card);
-      padding: 16px 18px;
-      text-align: center;
-    }
-    .summary-tile .num {
-      font-size: 28px; font-weight: 700; color: var(--color-text); line-height: 1;
-    }
+    .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px; }
+    .summary-tile { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 16px 18px; text-align: center; }
+    .summary-tile .num { font-size: 28px; font-weight: 700; line-height: 1; }
     .summary-tile .num.accent { color: var(--color-accent); }
-    .summary-tile .num.red    { color: var(--color-red); }
-    .summary-tile .label {
-      font-size: 11px; font-weight: 500;
-      color: var(--color-muted);
-      text-transform: uppercase; letter-spacing: .6px;
-      margin-top: 6px;
-    }
-
-    /* ── Footer ─────────────────────────────────────────────────────── */
-    .footer {
-      text-align: center;
-      font-size: 11px; color: var(--color-muted);
-      padding-top: 32px;
-    }
-
-    /* ── Responsive ─────────────────────────────────────────────────── */
+    .summary-tile .num.red { color: var(--color-red); }
+    .summary-tile .label { font-size: 11px; font-weight: 500; color: var(--color-muted); text-transform: uppercase; letter-spacing: .6px; margin-top: 6px; }
+    .section { margin-bottom: 40px; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .section-label .icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .section-label .icon.amber { background: var(--color-accent-dim); }
+    .section-label .icon.red { background: var(--color-red-dim); }
+    .section-label .icon.green { background: var(--color-green-dim); }
+    .section-label .icon.muted { background: var(--color-surface-2); }
+    .section-label h2 { font-size: 15px; font-weight: 600; }
+    .section-label .count { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--color-muted); background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: 2px 10px; }
+    .card-list { display: flex; flex-direction: column; gap: 8px; }
+    .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; }
+    .card.warn { border-left: 3px solid var(--color-accent); }
+    .card.urgent { border-left: 3px solid var(--color-red); }
+    .card.success { border-left: 3px solid var(--color-green); }
+    .card.info { border-left: 3px solid var(--color-muted); }
+    .card-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .card-icon.amber { background: var(--color-accent-dim); }
+    .card-icon.red { background: var(--color-red-dim); }
+    .card-icon.blue { background: var(--color-blue-dim); }
+    .card-icon.green { background: var(--color-green-dim); }
+    .card-icon.muted { background: var(--color-surface-2); }
+    .card-body { flex: 1; min-width: 0; }
+    .card-title { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+    .card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--color-muted); }
+    .card-note { margin-top: 8px; font-size: 12px; color: var(--color-muted); line-height: 1.5; }
+    .pill { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--radius-pill); }
+    .pill.amber { background: var(--color-accent-dim); color: var(--color-accent); }
+    .pill.red { background: var(--color-red-dim); color: var(--color-red); }
+    .pill.blue { background: var(--color-blue-dim); color: var(--color-blue); }
+    .pill.green { background: var(--color-green-dim); color: var(--color-green); }
+    .pill.orange { background: rgba(249,115,22,.12); color: #f97316; }
+    .pill.muted { background: var(--color-surface-2); color: var(--color-muted); border: 1px solid var(--color-border); }
+    .job-tag { flex-shrink: 0; }
+    .footer { text-align: center; font-size: 11px; color: var(--color-muted); padding-top: 32px; }
+    .footer a { color: var(--color-muted); text-decoration: none; }
     @media (max-width: 600px) {
-      .header { padding: 16px 18px; }
-      .container { padding: 20px 14px; }
-      .summary { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .summary-tile { padding: 12px 10px; }
-      .summary-tile .num { font-size: 22px; }
+      .header { padding: 16px 18px; } .container { padding: 20px 14px; }
+      .summary { gap: 8px; } .summary-tile { padding: 12px 10px; } .summary-tile .num { font-size: 22px; }
     }
   </style>
 </head>
 <body>
-
-<!-- Header -->
 <header class="header">
   <div class="header-left">
     <div class="logo-mark">SBP</div>
@@ -215,21 +83,20 @@
     </div>
   </div>
   <div class="header-date">
-    <strong id="js-date">Wednesday 10 Jun 2026</strong>
-    <span id="js-time">—</span>
+    <strong id="js-date"></strong>
+    <span id="js-time"></span>
   </div>
 </header>
-
 <div class="container">
 
-  <!-- Summary strip -->
+  <!-- SUMMARY STRIP -->
   <div class="summary">
     <div class="summary-tile">
-      <div class="num accent">13</div>
+      <div class="num accent">16</div>
       <div class="label">Open Tasks</div>
     </div>
     <div class="summary-tile">
-      <div class="num red">4</div>
+      <div class="num red">—</div>
       <div class="label">Follow-ups</div>
     </div>
     <div class="summary-tile">
@@ -238,279 +105,247 @@
     </div>
   </div>
 
-  <!-- ── Email Follow-ups ─────────────────────────────────────────── -->
-  <section class="section">
+  <!-- EMAIL FOLLOW-UPS SECTION -->
+  <div class="section">
     <div class="section-label">
-      <div class="icon red">📬</div>
+      <div class="icon muted">📬</div>
       <h2>Email Follow-ups</h2>
-      <span class="count">4 emails · 3-day lookback</span>
+      <span class="count">Unavailable</span>
     </div>
-
     <div class="card-list">
-
-      <div class="card warn">
-        <div class="card-icon amber">📋</div>
+      <div class="card info">
+        <div class="card-icon muted">⚠️</div>
         <div class="card-body">
-          <div class="card-title">Dunleavy &amp; Son — Tender Invitation, J500 Rebel Parkmore</div>
-          <div class="card-meta">
-            <span class="pill amber">⚡ Follow Up</span>
-            <span class="sep">·</span>
-            <span>dunleavyandson@gmail.com</span>
-            <span class="sep">·</span>
-            <span>Tue 9 Jun, 2:25 PM</span>
-          </div>
-          <div style="margin-top:8px; font-size:12px; color:var(--color-muted); line-height:1.5;">
-            "Hi Kieran, Just tried to call — got your voicemail." Awaiting callback on the tender invitation.
-          </div>
+          <div class="card-title">Outlook scan unavailable this run</div>
+          <div class="card-meta"><span>Chrome extension was not connected during this automated run</span></div>
+          <div class="card-note">Open Outlook manually to check for pending replies. Next automated run will attempt the scan again.</div>
         </div>
-        <div style="flex-shrink:0;"><span class="pill amber">J500</span></div>
       </div>
-
-      <div class="card warn">
-        <div class="card-icon red">🚨</div>
-        <div class="card-body">
-          <div class="card-title">James Leury — [Urgent] 500 - Rebel Parkmore sizing/stitch detail</div>
-          <div class="card-meta">
-            <span class="pill red">Urgent</span>
-            <span class="sep">·</span>
-            <span>James Leury</span>
-            <span class="sep">·</span>
-            <span>Tue 9 Jun, 2:07 PM</span>
-          </div>
-          <div style="margin-top:8px; font-size:12px; color:var(--color-muted); line-height:1.5;">
-            Sent sizing and adjusted stitch details. Flagged urgent — confirm James has actioned.
-          </div>
-        </div>
-        <div style="flex-shrink:0;"><span class="pill amber">J500</span></div>
-      </div>
-
-      <div class="card warn">
-        <div class="card-icon amber">🪵</div>
-        <div class="card-body">
-          <div class="card-title">Erdem Saatci — 500 Carpentry Materials RFQ · Plywood stock check</div>
-          <div class="card-meta">
-            <span class="pill amber">⚡ Follow Up</span>
-            <span class="sep">·</span>
-            <span>Erdem Saatci</span>
-            <span class="sep">·</span>
-            <span>Today 7:12 AM</span>
-          </div>
-          <div style="margin-top:8px; font-size:12px; color:var(--color-muted); line-height:1.5;">
-            "Hi Erdem, are the plywood sheets in stock ready?" — awaiting stock confirmation.
-          </div>
-        </div>
-        <div style="flex-shrink:0;"><span class="pill amber">J500</span></div>
-      </div>
-
-      <div class="card warn">
-        <div class="card-icon blue">🚿</div>
-        <div class="card-body">
-          <div class="card-title">Thomas Denaro — 500 Rebel Parkmore · Sprinkler Claim</div>
-          <div class="card-meta">
-            <span class="pill blue">Pending Reply</span>
-            <span class="sep">·</span>
-            <span>Thomas Denaro</span>
-            <span class="sep">·</span>
-            <span>Today 12:13 PM</span>
-          </div>
-          <div style="margin-top:8px; font-size:12px; color:var(--color-muted); line-height:1.5;">
-            "Hi Thomas, as previously mentioned, the sprinkler…" — claim point raised, awaiting acknowledgement.
-          </div>
-        </div>
-        <div style="flex-shrink:0;"><span class="pill amber">J500</span></div>
-      </div>
-
     </div>
-  </section>
+  </div>
 
-  <!-- ── Open Tasks ───────────────────────────────────────────────── -->
-  <section class="section">
+  <!-- OPEN TASKS SECTION -->
+  <div class="section">
     <div class="section-label">
       <div class="icon amber">✅</div>
       <h2>Open Tasks</h2>
-      <span class="count">from Notion · SBP Tasks</span>
+      <span class="count">16</span>
     </div>
-
     <div class="card-list">
 
-      <div class="card">
-        <div class="card-icon red">⚡</div>
+      <!-- WAITING ON -->
+      <div class="card urgent">
+        <div class="card-icon red">⏳</div>
         <div class="card-body">
-          <div class="card-title">Book / confirm concrete cutter</div>
+          <div class="card-title">Send Kieran RFQ for shopfront fender</div>
           <div class="card-meta">
-            <span class="pill red">Today</span>
-            <span class="sep">·</span>
-            <span>Added 4 Jun</span>
+            <span class="pill red">Waiting On</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 29 May 2026</span>
           </div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-icon red">📐</div>
+      <div class="card urgent">
+        <div class="card-icon red">⏳</div>
+        <div class="card-body">
+          <div class="card-title">Quote up steel works</div>
+          <div class="card-meta">
+            <span class="pill red">Waiting On</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 27 May 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card urgent">
+        <div class="card-icon red">⏳</div>
+        <div class="card-body">
+          <div class="card-title">Price up works</div>
+          <div class="card-meta">
+            <span class="pill red">Waiting On</span>
+            <span class="pill muted job-tag">Tender</span>
+            <span>Added 18 May 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOLLOW UP REQUIRED -->
+      <div class="card warn">
+        <div class="card-icon amber">🔔</div>
         <div class="card-body">
           <div class="card-title">Markout Concrete Chases</div>
           <div class="card-meta">
-            <span class="pill red">Today</span>
-            <span class="sep">·</span>
-            <span>Added 4 Jun</span>
+            <span class="pill orange">Follow Up Required</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 2 Jun 2026</span>
           </div>
         </div>
       </div>
 
+      <div class="card warn">
+        <div class="card-icon amber">🔔</div>
+        <div class="card-body">
+          <div class="card-title">Review construction of shopfront / shopfront materials</div>
+          <div class="card-meta">
+            <span class="pill orange">Follow Up Required</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 29 May 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card warn">
+        <div class="card-icon amber">🔔</div>
+        <div class="card-body">
+          <div class="card-title">Follow up Joel flemington joinery</div>
+          <div class="card-meta">
+            <span class="pill orange">Follow Up Required</span>
+            <span class="pill muted job-tag">J502</span>
+            <span>Added 28 May 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card warn">
+        <div class="card-icon amber">🔔</div>
+        <div class="card-body">
+          <div class="card-title">Follow up line marking quote</div>
+          <div class="card-meta">
+            <span class="pill orange">Follow Up Required</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 28 May 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card warn">
+        <div class="card-icon amber">🔔</div>
+        <div class="card-body">
+          <div class="card-title">Get a quote for the line marking to BoH</div>
+          <div class="card-meta">
+            <span class="pill orange">Follow Up Required</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 27 May 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOT STARTED -->
       <div class="card">
-        <div class="card-icon red">📏</div>
+        <div class="card-icon muted">📋</div>
         <div class="card-body">
           <div class="card-title">Setout and Measure columns</div>
           <div class="card-meta">
-            <span class="pill red">Today</span>
-            <span class="sep">·</span>
-            <span>Added 4 Jun</span>
+            <span class="pill muted">Not Started</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 4 Jun 2026</span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-icon amber">👷</div>
+        <div class="card-icon muted">📋</div>
         <div class="card-body">
-          <div class="card-title">Arrange Labour</div>
+          <div class="card-title">Book / confirm concrete cutter</div>
           <div class="card-meta">
-            <span class="pill amber">In Progress</span>
-            <span class="sep">·</span>
-            <span>Added 2 Jun</span>
+            <span class="pill muted">Not Started</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 2 Jun 2026</span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-icon amber">📐</div>
-        <div class="card-body">
-          <div class="card-title">Site measure steel</div>
-          <div class="card-meta">
-            <span class="pill amber">In Progress</span>
-            <span class="sep">·</span>
-            <span>Added 2 Jun</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon amber">📐</div>
+        <div class="card-icon muted">📋</div>
         <div class="card-body">
           <div class="card-title">Check BoH overall dimensions</div>
           <div class="card-meta">
             <span class="pill muted">Not Started</span>
-            <span class="sep">·</span>
-            <span>Added 1 Jun</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 1 Jun 2026</span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-icon amber">🔩</div>
+        <div class="card-icon muted">📋</div>
         <div class="card-body">
-          <div class="card-title">Quote up steel works</div>
+          <div class="card-title">Handover tasks to Ryan</div>
           <div class="card-meta">
             <span class="pill muted">Not Started</span>
-            <span class="sep">·</span>
-            <span>Added 27 May</span>
+            <span>Added 29 May 2026</span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-icon amber">💰</div>
+        <div class="card-icon muted">📋</div>
         <div class="card-body">
-          <div class="card-title">Price up works</div>
+          <div class="card-title">Order plastering material</div>
           <div class="card-meta">
             <span class="pill muted">Not Started</span>
-            <span class="sep">·</span>
-            <span>Added 28 May</span>
+            <span class="pill muted job-tag">J500</span>
+            <span>Added 27 May 2026</span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-icon amber">🪵</div>
+        <div class="card-icon muted">📋</div>
         <div class="card-body">
-          <div class="card-title">Follow up Joel — Flemington joinery</div>
-          <div class="card-meta">
-            <span class="pill amber">Follow Up Required</span>
-            <span class="sep">·</span>
-            <span>Added 28 May</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon blue">📦</div>
-        <div class="card-body">
-          <div class="card-title">Pick up Joinery Unit</div>
+          <div class="card-title">Install door stop</div>
           <div class="card-meta">
             <span class="pill muted">Not Started</span>
-            <span class="sep">·</span>
-            <span>Added 28 May</span>
+            <span class="pill muted job-tag">J502</span>
+            <span>Added 20 May 2026</span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-icon blue">🔧</div>
+        <div class="card-icon muted">📋</div>
         <div class="card-body">
-          <div class="card-title">Install Joinery Unit</div>
+          <div class="card-title">Pick up Door stop</div>
           <div class="card-meta">
             <span class="pill muted">Not Started</span>
-            <span class="sep">·</span>
-            <span>Added 28 May</span>
+            <span class="pill muted job-tag">J502</span>
+            <span>Added 18 May 2026</span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-icon blue">🦺</div>
+        <div class="card-icon muted">📋</div>
         <div class="card-body">
-          <div class="card-title">Hammertech Induction</div>
+          <div class="card-title">Fix Paint to rear door</div>
           <div class="card-meta">
             <span class="pill muted">Not Started</span>
-            <span class="sep">·</span>
-            <span>Added 29 May</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon blue">🛡️</div>
-        <div class="card-body">
-          <div class="card-title">Order floor protection</div>
-          <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span class="sep">·</span>
-            <span>Added 29 May</span>
+            <span class="pill muted job-tag">J502</span>
+            <span>Added 18 May 2026</span>
           </div>
         </div>
       </div>
 
     </div>
-  </section>
-
-  <div class="footer">
-    Generated by Claude · SBP Group · <span id="js-gen-time"></span><br/>
-    <a href="https://www.notion.so/27a8a16dee53807a9aaaf785b1b72e28" style="color:var(--color-muted);text-decoration:none;" target="_blank">Open in Notion →</a>
   </div>
 
+  <div class="footer">
+    Generated by Claude · SBP Group · <span id="js-gen"></span><br/>
+    <a href="https://www.notion.so/27a8a16dee53807a9aaaf785b1b72e28" target="_blank">Open in Notion →</a>
+  </div>
 </div>
-
 <script>
-  (function () {
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const now = new Date();
-    const dateStr = days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
-    const timeStr = now.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' });
-    document.getElementById('js-date').textContent = dateStr;
-    document.getElementById('js-time').textContent = timeStr;
-    document.getElementById('js-gen-time').textContent = 'Generated ' + timeStr;
-  })();
+(function(){
+  const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const n=new Date();
+  const ds=d[n.getDay()]+' '+n.getDate()+' '+m[n.getMonth()]+' '+n.getFullYear();
+  const ts=n.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('js-date').textContent=ds;
+  document.getElementById('js-time').textContent=ts;
+  document.getElementById('js-gen').textContent='Generated '+ts;
+})();
 </script>
-
 </body>
 </html>
