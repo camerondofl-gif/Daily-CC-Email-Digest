@@ -37,22 +37,16 @@
     .section-label .icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
     .section-label .icon.amber { background: var(--color-accent-dim); }
     .section-label .icon.red { background: var(--color-red-dim); }
-    .section-label .icon.green { background: var(--color-green-dim); }
-    .section-label .icon.muted { background: var(--color-surface-2); }
     .section-label h2 { font-size: 15px; font-weight: 600; }
     .section-label .count { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--color-muted); background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: 2px 10px; }
     .card-list { display: flex; flex-direction: column; gap: 8px; }
     .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; }
     .card.warn { border-left: 3px solid var(--color-accent); }
     .card.urgent { border-left: 3px solid var(--color-red); }
-    .card.success { border-left: 3px solid var(--color-green); }
-    .card.info { border-left: 3px solid var(--color-muted); }
     .card-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
     .card-icon.amber { background: var(--color-accent-dim); }
     .card-icon.red { background: var(--color-red-dim); }
     .card-icon.blue { background: var(--color-blue-dim); }
-    .card-icon.green { background: var(--color-green-dim); }
-    .card-icon.muted { background: var(--color-surface-2); }
     .card-body { flex: 1; min-width: 0; }
     .card-title { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
     .card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--color-muted); }
@@ -61,8 +55,6 @@
     .pill.amber { background: var(--color-accent-dim); color: var(--color-accent); }
     .pill.red { background: var(--color-red-dim); color: var(--color-red); }
     .pill.blue { background: var(--color-blue-dim); color: var(--color-blue); }
-    .pill.green { background: var(--color-green-dim); color: var(--color-green); }
-    .pill.orange { background: rgba(249,115,22,.12); color: #f97316; }
     .pill.muted { background: var(--color-surface-2); color: var(--color-muted); border: 1px solid var(--color-border); }
     .job-tag { flex-shrink: 0; }
     .footer { text-align: center; font-size: 11px; color: var(--color-muted); padding-top: 32px; }
@@ -88,245 +80,93 @@
   </div>
 </header>
 <div class="container">
-
-  <!-- SUMMARY STRIP -->
   <div class="summary">
     <div class="summary-tile">
-      <div class="num accent">16</div>
+      <div class="num accent">3</div>
       <div class="label">Open Tasks</div>
     </div>
     <div class="summary-tile">
-      <div class="num red">—</div>
+      <div class="num red">2</div>
       <div class="label">Follow-ups</div>
     </div>
     <div class="summary-tile">
-      <div class="num">2</div>
+      <div class="num">3</div>
       <div class="label">Active Jobs</div>
     </div>
   </div>
 
-  <!-- EMAIL FOLLOW-UPS SECTION -->
   <div class="section">
     <div class="section-label">
-      <div class="icon muted">📬</div>
+      <div class="icon red">📬</div>
       <h2>Email Follow-ups</h2>
-      <span class="count">Unavailable</span>
+      <span class="count">2</span>
     </div>
     <div class="card-list">
-      <div class="card info">
-        <div class="card-icon muted">⚠️</div>
+      <div class="card urgent">
+        <div class="card-icon red">⚠️</div>
         <div class="card-body">
-          <div class="card-title">Outlook scan unavailable this run</div>
-          <div class="card-meta"><span>Chrome extension was not connected during this automated run</span></div>
-          <div class="card-note">Open Outlook manually to check for pending replies. Next automated run will attempt the scan again.</div>
+          <div class="card-title">Sam Carroll (Brisbane Access) &mdash; [URGENT] Re: Rebel Parkmore - Victoria</div>
+          <div class="card-meta">
+            <span>Sent Fri 12/06, 10:53 AM</span>
+            <span class="pill red job-tag">J500</span>
+          </div>
+          <div class="card-note">High-importance request to swap out both faulty JLG scissor lifts for Haulotte units &mdash; site productivity being impacted, labour being redirected. Chase Brisbane Access for confirmation/action.</div>
+        </div>
+      </div>
+      <div class="card warn">
+        <div class="card-icon amber">✉️</div>
+        <div class="card-body">
+          <div class="card-title">Vincenzo Pellicciotta (Maben) &mdash; Re: Parkmore SC - Rebel Fit Off</div>
+          <div class="card-meta">
+            <span>Sent Fri 12/06, 11:35 AM</span>
+            <span class="pill amber job-tag">J500</span>
+          </div>
+          <div class="card-note">Told Vincenzo that Thomas would respond directly on the BOH ceiling fit-off date for Maben's Cat 1 services. Thomas has since replied to Cameron (26/06 complete, fit-off from 29/06) &mdash; worth confirming Vincenzo has received that date.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- OPEN TASKS SECTION -->
   <div class="section">
     <div class="section-label">
       <div class="icon amber">✅</div>
       <h2>Open Tasks</h2>
-      <span class="count">16</span>
+      <span class="count">3</span>
     </div>
     <div class="card-list">
-
-      <!-- WAITING ON -->
-      <div class="card urgent">
-        <div class="card-icon red">⏳</div>
-        <div class="card-body">
-          <div class="card-title">Send Kieran RFQ for shopfront fender</div>
-          <div class="card-meta">
-            <span class="pill red">Waiting On</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 29 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card urgent">
-        <div class="card-icon red">⏳</div>
-        <div class="card-body">
-          <div class="card-title">Quote up steel works</div>
-          <div class="card-meta">
-            <span class="pill red">Waiting On</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 27 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card urgent">
-        <div class="card-icon red">⏳</div>
-        <div class="card-body">
-          <div class="card-title">Price up works</div>
-          <div class="card-meta">
-            <span class="pill red">Waiting On</span>
-            <span class="pill muted job-tag">Tender</span>
-            <span>Added 18 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- FOLLOW UP REQUIRED -->
-      <div class="card warn">
-        <div class="card-icon amber">🔔</div>
+      <div class="card">
+        <div class="card-icon amber">🔲</div>
         <div class="card-body">
           <div class="card-title">Markout Concrete Chases</div>
           <div class="card-meta">
-            <span class="pill orange">Follow Up Required</span>
+            <span class="pill amber">Follow Up Required</span>
             <span class="pill muted job-tag">J500</span>
-            <span>Added 2 Jun 2026</span>
+            <span>Last edited 4 Jun</span>
           </div>
         </div>
       </div>
-
-      <div class="card warn">
-        <div class="card-icon amber">🔔</div>
+      <div class="card">
+        <div class="card-icon amber">🔲</div>
         <div class="card-body">
-          <div class="card-title">Review construction of shopfront / shopfront materials</div>
+          <div class="card-title">Follow up Joel Flemington joinery</div>
           <div class="card-meta">
-            <span class="pill orange">Follow Up Required</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 29 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card warn">
-        <div class="card-icon amber">🔔</div>
-        <div class="card-body">
-          <div class="card-title">Follow up Joel flemington joinery</div>
-          <div class="card-meta">
-            <span class="pill orange">Follow Up Required</span>
+            <span class="pill amber">Follow Up Required</span>
             <span class="pill muted job-tag">J502</span>
-            <span>Added 28 May 2026</span>
+            <span>Last edited 28 May</span>
           </div>
         </div>
       </div>
-
-      <div class="card warn">
-        <div class="card-icon amber">🔔</div>
-        <div class="card-body">
-          <div class="card-title">Follow up line marking quote</div>
-          <div class="card-meta">
-            <span class="pill orange">Follow Up Required</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 28 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card warn">
-        <div class="card-icon amber">🔔</div>
-        <div class="card-body">
-          <div class="card-title">Get a quote for the line marking to BoH</div>
-          <div class="card-meta">
-            <span class="pill orange">Follow Up Required</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 27 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- NOT STARTED -->
       <div class="card">
-        <div class="card-icon muted">📋</div>
+        <div class="card-icon red">🔲</div>
         <div class="card-body">
-          <div class="card-title">Setout and Measure columns</div>
+          <div class="card-title">Price up works &mdash; Claudia &amp; Graces Office</div>
           <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 4 Jun 2026</span>
+            <span class="pill red">Waiting On</span>
+            <span class="pill muted job-tag">1718</span>
+            <span>Last edited 28 May</span>
           </div>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-icon muted">📋</div>
-        <div class="card-body">
-          <div class="card-title">Book / confirm concrete cutter</div>
-          <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 2 Jun 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon muted">📋</div>
-        <div class="card-body">
-          <div class="card-title">Check BoH overall dimensions</div>
-          <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 1 Jun 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon muted">📋</div>
-        <div class="card-body">
-          <div class="card-title">Handover tasks to Ryan</div>
-          <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span>Added 29 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon muted">📋</div>
-        <div class="card-body">
-          <div class="card-title">Order plastering material</div>
-          <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span class="pill muted job-tag">J500</span>
-            <span>Added 27 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon muted">📋</div>
-        <div class="card-body">
-          <div class="card-title">Install door stop</div>
-          <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span class="pill muted job-tag">J502</span>
-            <span>Added 20 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon muted">📋</div>
-        <div class="card-body">
-          <div class="card-title">Pick up Door stop</div>
-          <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span class="pill muted job-tag">J502</span>
-            <span>Added 18 May 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-icon muted">📋</div>
-        <div class="card-body">
-          <div class="card-title">Fix Paint to rear door</div>
-          <div class="card-meta">
-            <span class="pill muted">Not Started</span>
-            <span class="pill muted job-tag">J502</span>
-            <span>Added 18 May 2026</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
